@@ -1,0 +1,1 @@
+INSERT INTO Contact (name,email) VALUES ('asd', 'asd@asdf.com');
