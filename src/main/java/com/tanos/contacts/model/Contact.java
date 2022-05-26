@@ -3,6 +3,11 @@ package com.tanos.contacts.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -13,10 +18,11 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="CONTACT")
-public class Contact {
+@Table(name="Contact")
+public class Contact extends AuditableEntity<String> {
 
     @Id
+   // @GeneratedValue(strategy = GenerationType.IDENTITY)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id ;
 
@@ -33,11 +39,10 @@ public class Contact {
     private Date birthDate;
     private String address;
 
-@PastOrPresent
-    private Date createdAt;
-
 @ManyToOne
 @JoinColumn(name = "group_id")
-    private ContactGroup contactGroup;
+    private ContactGroup group;
+
+
 
 }

@@ -1,14 +1,17 @@
 package com.tanos.contacts.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import lombok.Data;
+
+import javax.persistence.*;
 import java.util.List;
 import java.util.UUID;
 
 @Entity
-public class ContactGroup {
+@Data
+public class ContactGroup extends AuditableEntity<String> {
     @Id
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID Id;
     private String name;
 
