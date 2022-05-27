@@ -8,6 +8,7 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
@@ -20,12 +21,14 @@ import java.util.Date;
 public abstract class AuditableEntity<U>  implements Serializable {
 
     @CreatedDate
+    @Column(updatable=false)
     private Date createdAt;
 
     @LastModifiedDate
     private Date lastModifiedAt;
 
     @CreatedBy
+    @Column(updatable=false)
     private U createdBy;
 
     @LastModifiedBy

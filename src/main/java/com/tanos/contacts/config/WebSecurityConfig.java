@@ -27,8 +27,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public WebSecurityConfig(DataSource dataSource) {
         this.dataSource = dataSource;
     }
+/*
 
-    /*
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
@@ -43,9 +43,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 */
 
+
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
                 .dataSource(dataSource);
     }
+
+
 }
