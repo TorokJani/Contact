@@ -9,9 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Data
@@ -20,7 +18,7 @@ public class ContactUser implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private Long id;
 
     private String username;
 
@@ -28,6 +26,8 @@ public class ContactUser implements UserDetails {
 
     @Email
     private String email;
+
+    private boolean enabled;
 
     //@Transient
     @ManyToMany
@@ -40,7 +40,15 @@ public class ContactUser implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+      //  return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+        Collection<Role> roles = this.getRoles();
+
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        for(Role role: roles){
+            authorities.add(new SimpleGrantedAuthority(role.getName()));
+        }
+
+        return authorities;
     }
 
     @Override
@@ -70,6 +78,6 @@ public class ContactUser implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return enabled;
     }
 }
