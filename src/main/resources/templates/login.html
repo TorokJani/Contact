@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <div th:replace="fragments/header :: header (title='Login')"></div>
@@ -8,19 +7,20 @@
 <div class="container">
 
     <!--/*@thymesVar id="contactUser" type="com.tanos.contacts.model.ContactUser"*/-->
-    <form action="#" th:action="@{/login}" method="post" th:object="${contactUser} novalidate">
+    <form action="#" th:action="@{/login}" method="post" th:object="${contactUser}">
 
         <div class="form-group">
             <label for="username" class="form-label">Username</label>
             <input type="text" class="form-control" id="username" th:field="*{username}">
-            <<span class="validationError" th:if="${#fields.hasErrors('username')}"  th:errors="*{username}"></span>
+            <span class="validationError" th:if="${#fields.hasErrors('username')}"  th:errors="*{username}"></span>
         </div>
         <div class="form-group">
             <label for="password" class="form-label">Password</label>
             <input type="password" class="form-control" id="password" th:field="*{password}">
-            <<span class="validationError" th:if="${#fields.hasErrors('password')}"  th:errors="*{password}"></span>
+            <span class="validationError" th:if="${#fields.hasErrors('password')}"  th:errors="*{password}"></span>
         </div>
         <button type="submit" class="btn btn-primary">Login</button>
+        <a th:href="@{/register}" class="btn btn-secondary">Register</a>
     </form>
 </div>
 </body>

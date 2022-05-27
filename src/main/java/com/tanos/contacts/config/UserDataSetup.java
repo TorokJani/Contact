@@ -4,6 +4,7 @@ import com.tanos.contacts.model.ContactUser;
 import com.tanos.contacts.model.Role;
 import com.tanos.contacts.repository.ContactUserRepository;
 import com.tanos.contacts.repository.RoleRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -15,6 +16,7 @@ import java.util.Arrays;
 
 
 @Component
+@Slf4j
 public class UserDataSetup implements ApplicationListener<ContextRefreshedEvent> {
 
     private ContactUserRepository userRepository;
@@ -51,6 +53,8 @@ public class UserDataSetup implements ApplicationListener<ContextRefreshedEvent>
         userRepository.save(user) ;
 
         alreadySetup =true;
+
+        log.info("test user saved");
     }
     @Transactional
     public Role createRoleIfNotExists(String name) {

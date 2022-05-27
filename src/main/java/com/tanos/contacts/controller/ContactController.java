@@ -18,16 +18,13 @@ import java.util.UUID;
 @Controller
 @RequestMapping("/contact")
 public class ContactController {
-
+    @Autowired
     private ContactService contactService;
-@Autowired
-    public ContactController(ContactService contactService) {
-        this.contactService = contactService;
-    }
 
-    @GetMapping("/create")
-    public String createContactForm(Contact contact){
-        return "contact-create";
+    @PostMapping
+    public String listContactsPost(Model model){
+        model.addAttribute("contacts",contactService.getContacts());
+        return "contact-list";
     }
 
     @GetMapping
@@ -35,6 +32,13 @@ public class ContactController {
         model.addAttribute("contacts",contactService.getContacts());
         return "contact-list";
     }
+
+    @GetMapping("/create")
+    public String createContactForm(Contact contact){
+        return "contact-create";
+    }
+
+
 
     @PostMapping("/create")
     public String createContact(@Valid Contact contact, BindingResult bindingResult){
