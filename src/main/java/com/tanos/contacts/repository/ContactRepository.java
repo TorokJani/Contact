@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface ContactRepository extends JpaRepository<Contact,UUID> {
+public interface ContactRepository extends JpaRepository<Contact,Long> {
 
 public Contact findByEmailAndCreatedAt(String email, Date createdAt);
 

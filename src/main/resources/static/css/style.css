@@ -1,7 +1,17 @@
+.logo{
+    with: 2rem;
+    height: 2rem
+}
+
 nav{
     margin-bottom: 2rem;
 }
 
 .validationError{
-    color: red;
+    color: #ED4337;
+}
+
+
+.container{
+    margin-top: 4rem;
 }

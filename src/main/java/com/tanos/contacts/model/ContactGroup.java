@@ -12,7 +12,7 @@ public class ContactGroup extends AuditableEntity<String> {
     @Id
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID Id;
+    private long Id;
     private String name;
 
     @OneToMany

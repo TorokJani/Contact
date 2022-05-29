@@ -22,9 +22,11 @@ public class ContactService {
     }
 
     public void addContact(Contact c) {
-        c.setId((UUID.randomUUID()));
-        contactRepository.save(c);
+        //c.setId((UUID.randomUUID()));
+        //c.setId(c.getId()++);
         log.info("contact add "+ c.toString());
+        contactRepository.save(c);
+
        // contactRepository.addContact(c);
     }
 
@@ -32,16 +34,19 @@ public class ContactService {
     public List<Contact> getContacts() {return contactRepository.findAll();}
 
     //public void deleteContact(UUID id) {        contactRepository.deleteContact(id);    }
-    public void deleteContact(UUID id) {        contactRepository.deleteById(id);    }
+    public void deleteContact(long id) {        contactRepository.deleteById(id);    }
 
     //public Contact findById(UUID id) {    return contactRepository.findById(id);    }
-    public Contact findById(UUID id) {    return contactRepository.findById(id).orElse(null);    }
+    public Contact findById(long id) {    return contactRepository.findById(id).orElse(null);    }
 
     //public void updateContact(Contact contact) {    contactRepository.updateContact(contact);    }
 
     public void updateContact(Contact contact) {    contactRepository.save(contact);    }
 
-    public void saveContact(Contact contact) {
+    public Contact saveContact(Contact contact) {
         contactRepository.save(contact);
+        return contact;
     }
+
+
 }

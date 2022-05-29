@@ -52,13 +52,13 @@ public class ContactController {
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteContact(@PathVariable UUID id){
+    public String deleteContact(@PathVariable long id){
         contactService.deleteContact(id);
         return "redirect:/contact";
     }
 
     @GetMapping("/edit/{id}")
-    public String editContactForm(@PathVariable UUID id, Model model){
+    public String editContactForm(@PathVariable long id, Model model){
         Contact c= contactService.findById(id);
         model.addAttribute("contact",c);
         return "contact-create";

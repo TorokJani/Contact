@@ -15,14 +15,14 @@ public class ContactsApplication {
         SpringApplication.run(ContactsApplication.class, args);
     }
 
-/*    @Bean
+    @Bean
     public DataSource dataSource(){
         return new EmbeddedDatabaseBuilder()
                 .setType(EmbeddedDatabaseType.H2).build();
 
 
     }
-    */
+
 
 
 }

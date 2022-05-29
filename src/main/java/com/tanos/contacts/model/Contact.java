@@ -22,9 +22,9 @@ import java.util.UUID;
 public class Contact extends AuditableEntity<String> {
 
     @Id
-   // @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id ;
+   // @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id ;
 
     @NotEmpty
     @Size(min = 3, message = "name must be at least 3 characters long")

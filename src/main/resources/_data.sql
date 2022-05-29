@@ -1,0 +1,2 @@
+--INSERT INTO CONTACT (name, email, phone, address,birth_date) VALUES ('Kiss Béla', 'kiss@bela.com','+36 20 111 1111', ' 1031 Budapest, Valami utca 1.','1975-01-01');
+INSERT INTO CONTACT (name, email, phone, address,birth_date)) VALUES ('Nagy János','nagy@janos.com','+36 20 222 2222', '1031 Budapest, Valami utca 2.','1975-01-02');

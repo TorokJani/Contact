@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,6 +22,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Autowired
+    private DataSource dataSource;
+
+
+
 
     @Bean
     public PasswordEncoder passwordEncoder(){
@@ -36,6 +42,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/register").permitAll()
+                .antMatchers("/api/**").permitAll()
+                .antMatchers("/css/**","/images/**").permitAll()
                 .antMatchers("/users").hasAnyAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
@@ -46,17 +54,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout().permitAll()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login");
+                .logoutSuccessUrl("/login")
+                .and().csrf().ignoringAntMatchers("/api/**");
     }
 
-    /*
-    @Autowired
-    private DataSource dataSource;
-
-    public WebSecurityConfig(DataSource dataSource) {
-        this.dataSource = dataSource;
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring()
+                .antMatchers("/h2-console/**","/api/**");
     }
-*/
+
+
 
 /*
     @Override
