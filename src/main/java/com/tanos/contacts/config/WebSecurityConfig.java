@@ -42,7 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/register").permitAll()
-                .antMatchers("/api/**").permitAll()
+                .antMatchers("/api/**","/api-v2/**").permitAll()
                 .antMatchers("/css/**","/images/**").permitAll()
                 .antMatchers("/users").hasAnyAuthority("ADMIN")
                 .anyRequest().authenticated()
@@ -55,13 +55,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout().permitAll()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login")
-                .and().csrf().ignoringAntMatchers("/api/**");
+                .and().csrf().ignoringAntMatchers("/api/**", "/api-v2/**");
     }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring()
-                .antMatchers("/h2-console/**","/api/**");
+                .antMatchers("/h2-console/**","/api/**", "/api-2/**");
     }
 
 

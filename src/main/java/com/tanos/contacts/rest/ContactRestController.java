@@ -35,8 +35,17 @@ public class ContactRestController {
         return new ResponseEntity<>(contact,HttpStatus.OK);
     }
 
-    @PostMapping(value = "/contacts")
-    public HttpEntity<Contact> createContatct(@RequestBody Contact contact ){
-        return ResponseEntity.status(HttpStatus.CREATED).body(contactService.saveContact(contact));
+    @PostMapping(value = "/contacts", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public HttpEntity<Contact> createContatct(@Valid @RequestBody Contact contact ){
+        try{
+            Contact result = contactService.saveContact(contact);
+            return ResponseEntity.status(HttpStatus.CREATED).body(result);
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().build();
+        }
+
     }
+
+
 }
