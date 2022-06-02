@@ -1,8 +1,8 @@
-package com.tanos.contacts.rest.hateoes;
+package com.tanos.contacts.rest;
 
 import com.tanos.contacts.model.Contact;
-import com.tanos.contacts.rest.hateoes.assembler.ContactResourceAssembler;
-import com.tanos.contacts.rest.hateoes.resources.ContactResource;
+import com.tanos.contacts.model.hateoas.assemblers.ContactResourceAssembler;
+import com.tanos.contacts.model.hateoas.resources.ContactResource;
 import com.tanos.contacts.service.ContactService;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
